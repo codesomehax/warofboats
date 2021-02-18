@@ -8,8 +8,6 @@ class Game {
         this.players[1].enemy = this.players[0];
         this.turn = 0;
     }
-
-    reset() {}
 }
 
 class Player {
@@ -50,10 +48,12 @@ class Player {
 
                     for (let k of cart) {
 
-                        if (this.boatsBoard[boat.fields[j].x + k[0]][boat.fields[j].y + k[1]].boat != null) {
-                            partCondition = false;
-                            break;
-                        }
+                        try {
+                            if (this.boatsBoard[boat.fields[j].x + k[0]][boat.fields[j].y + k[1]].boat != null) {
+                                partCondition = false;
+                                break;
+                            }
+                        } catch (e) {}
 
                     }
 
@@ -83,7 +83,7 @@ class Player {
             boatsBoardField.boat.fields.find((field => {
                 return field.x == x && field.y == y;
             })).hit = true;
-            
+
         }
     }
 
@@ -128,18 +128,24 @@ class BoatField extends Field {
 class Boat {
     fields = [];
     length;
+    direction;
 
     constructor(length) {
         this.length = length;
-        const x = getRandomInt(BOARD_SIZE),
-              y = getRandomInt(BOARD_SIZE);
+        let x, y, direction;
+        do {
+            x = getRandomInt(BOARD_SIZE),
+            y = getRandomInt(BOARD_SIZE);
+    
+            direction = getRandomInt(2) // 0 = horizontal, 1 = vertical
+        } while (x + direction * length >= BOARD_SIZE || y + (1 - direction) * length >= BOARD_SIZE);
 
-        const direction = getRandomInt(2) // 0 = horizontal, 1 = vertical
+        this.direction = (direction) ? 'vertical' : 'horizontal';
 
         for (let i = 0; i < length; i++) {
             this.fields.push(new BoatField(
-                x + Math.abs(1 - direction) * i,
-                y + direction * i
+                x + direction * i,
+                y + (1 - direction) * i
             ));
         }
     }

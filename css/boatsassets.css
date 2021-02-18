@@ -1,0 +1,29 @@
+.boathorizontal {
+    background: border-box url('../img/boathorizontal.png') no-repeat center/100% 100%,
+                border-box url('../img/water.jpg');
+}
+
+.boatstarthorizontal {
+    background: border-box url('../img/boatstarthorizontal.png') no-repeat center/100% 100%,
+                border-box url('../img/water.jpg');
+}
+
+.boatendhorizontal {
+    background: border-box url('../img/boatendhorizontal.png') no-repeat center/100% 100%,
+                border-box url('../img/water.jpg');
+}
+
+.boatvertical {
+    background: border-box url('../img/boatvertical.png') no-repeat center/100% 100%,
+                border-box url('../img/water.jpg');
+}
+
+.boatstartvertical {
+    background: border-box url('../img/boatstartvertical.png') no-repeat center/100% 100%,
+                border-box url('../img/water.jpg');
+}
+
+.boatendvertical {
+    background: border-box url('../img/boatendvertical.png') no-repeat center/100% 100%,
+                border-box url('../img/water.jpg');
+}
