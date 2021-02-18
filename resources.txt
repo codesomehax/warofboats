@@ -1,0 +1,8 @@
+Resources of all used graphics
+
+back.jpg - https://www.naval-encyclopedia.com/category/ww1-warships/page/60/
+target.png (edited) - http://pngimg.com/download/27462
+water.jpg - https://opengameart.org/content/water-texture-pack
+explosion.png (edited) - https://opengameart.org/content/explosions-2
+
+boats*.png - made by myself

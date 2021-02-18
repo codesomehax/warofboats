@@ -1,0 +1,73 @@
+html {
+    height: 100%;
+    background: fixed url('../img/back.jpg') no-repeat center/100% 100%;
+    background-attachment: fixed;
+    font-size: 10px;
+}
+
+body {
+    font-size: 2.4rem;
+}
+
+table {
+    border-spacing: 0px;
+    border-collapse: collapse;
+    margin: auto;
+}
+
+td, .boardtitle {
+    font-weight: bolder;
+    color: silver;
+}
+
+td {
+    width: 64px;
+    height: 64px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.tileset {
+    background: border-box url('../img/water.jpg');
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    padding: 0px;
+}
+
+.tablescontainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.boardtitle {
+    margin: auto;
+}
+
+.startercontainer {
+    margin: 30px;
+    text-align: center;
+}
+
+.starter {
+    padding: 10px;
+    background: linear-gradient(to right, white, gray);
+    font-size: 4rem;
+    border-radius: 6px;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+
+.finish {
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    width: 20%;
+    padding: 10px;
+    background-image: linear-gradient(to right, rgba(192, 192, 192, 0.8), rgba(255, 255, 255, 0.8));
+    text-align: center;
+    border-radius: 6px;
+}
+
