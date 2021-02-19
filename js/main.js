@@ -6,5 +6,6 @@ let game;
 starterButton.addEventListener('click', () => {
     game = new Game();
     Drawer.delete();
+    Drawer.unhide();
     Drawer.draw();
 })

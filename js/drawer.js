@@ -31,12 +31,13 @@ class Drawer {
 
                     if (j !== 0 && k !== 0) {
                         c.classList.add(`co${j-1}-${k-1}`, 'tileset', (i) ? 'shootboard' : 'boatsboard');
+                        if (c.classList.contains('shootboard')) c.classList.add('shootable');
 
                         if (c.classList.contains('shootboard')) {
                             c.addEventListener(
                                 'click',
                                 () => {
-                                    game.players[0].shoot(j-1, k-1);
+                                    game.action('shoot', j-1, k-1);
                                 },
                                 {once: true}
                             );
@@ -59,8 +60,7 @@ class Drawer {
 
                 const field = boat.fields[i];
 
-                console.log(i, field);
-                const td = document.querySelector(`.co${field.x}-${field.y}`);
+                const td = document.querySelector(`.boatsboard.co${field.x}-${field.y}`);
 
                 switch (i) {
                     case '0': // start field

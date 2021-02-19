@@ -3,10 +3,69 @@ class Game {
     turn;
 
     constructor() {
-        this.players = [new Player(0), new Player(1)];
+        this.players = [new Player(0, 'human'), new Player(1, 'CPU')];
         this.players[0].enemy = this.players[1];
         this.players[1].enemy = this.players[0];
         this.turn = 0;
+    }
+
+    action(type, ...args) { // performs an action of type type and changes the turn
+        switch(type) { // possibility of adding multiple actions
+            case 'shoot':
+                let [x, y] = args;
+                let boatsBoardField = this.players[1 - this.turn].boatsBoard[x][y];
+
+                while (boatsBoardField.shot === true) { // applyable only for CPU, human can't shoot twice the same target
+                    x = getRandomInt(BOARD_SIZE);
+                    y = getRandomInt(BOARD_SIZE);
+                    boatsBoardField = this.players[1 - this.turn].boatsBoard[x][y];
+                }
+
+                boatsBoardField.shot = true;
+
+                const docBoatsBoardField = document.querySelector((this.turn) ? `.boatsboard.co${x}-${y}` : `.shootboard.co${x}-${y}`);
+
+                if (boatsBoardField.boat != null) { // if hit
+
+                    boatsBoardField.boat.fields.find((field => {
+                        return field.x == x && field.y == y;
+                    })).hit = true;
+
+                    
+                    docBoatsBoardField.classList.add('hit');
+
+                    const boat = boatsBoardField.boat;
+
+                    if (this.turn === 0 && boat.isDestroyed()) {
+                        for (let i in boat.fields) {
+
+                            const field = boat.fields[i];
+            
+                            const td = document.querySelector(`.shootboard.co${field.x}-${field.y}`);
+            
+                            switch (i) {
+                                case '0': // start field
+                                    td.classList.add(`boatstart${boat.direction}`);
+                                    break;
+                                
+                                case `${boat.fields.length-1}`: // end field
+                                    td.classList.add(`boatend${boat.direction}`);
+                                    break;
+            
+                                default: // fields between
+                                    td.classList.add(`boat${boat.direction}`);
+                            }
+                        }
+                    }
+                } else { // if missed
+                    docBoatsBoardField.classList.add('missed');
+                }
+                break;
+        }
+
+        this.turn = 1 - this.turn;
+
+        if (this.players[this.turn].type === 'CPU') this.action('shoot', getRandomInt(BOARD_SIZE), getRandomInt(BOARD_SIZE));
     }
 }
 
@@ -16,9 +75,11 @@ class Player {
     boatsBoard = [];
     boats = [];
     enemy = null;
+    type;
 
-    constructor(number) {
+    constructor(number, type) {
         this.number = number;
+        this.type = type;
 
         // shootBoard and boatsBoard
         for (let i = 0; i < BOARD_SIZE; i++) {
@@ -72,22 +133,6 @@ class Player {
             }
         }
     }
-
-    shoot(x, y) {
-        const boatsBoardField = this.enemy.boatsBoard[x][y];
-
-        boatsBoardField.shot = true;
-
-        if (boatsBoardField.boat != null) { // if hit
-
-            boatsBoardField.boat.fields.find((field => {
-                return field.x == x && field.y == y;
-            })).hit = true;
-
-        }
-    }
-
-
 }
 
 class Field {
@@ -151,7 +196,7 @@ class Boat {
     }
 
     isDestroyed() {
-        for (let boatField of fields) {
+        for (let boatField of this.fields) {
             if (boatField.hit === false) return false;
         }
         

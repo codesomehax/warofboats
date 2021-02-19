@@ -1,0 +1,58 @@
+td.shootboard:hover {
+    background: url('../img/target.png') no-repeat center,
+                border-box url('../img/water.jpg');
+    cursor: pointer;
+}
+
+td.shootboard.hit, td.shootboard.hit:hover {
+    background: url('../img/explosion.png') no-repeat center,
+                border-box url('../img/water.jpg');
+}
+
+td.boathorizontal.hit {
+    background: url('../img/explosion.png') no-repeat center,
+                border-box url('../img/boathorizontal.png') no-repeat center/100% 100%,
+                border-box url('../img/water.jpg');
+}
+
+td.boatstarthorizontal.hit {
+    background: url('../img/explosion.png') no-repeat center,
+                border-box url('../img/boatstarthorizontal.png') no-repeat center/100% 100%,
+                border-box url('../img/water.jpg');
+}
+
+td.boatendhorizontal.hit {
+    background: url('../img/explosion.png') no-repeat center,
+                border-box url('../img/boatendhorizontal.png') no-repeat center/100% 100%,
+                border-box url('../img/water.jpg');
+}
+
+td.boatvertical.hit {
+    background: url('../img/explosion.png') no-repeat center,
+                border-box url('../img/boatvertical.png') no-repeat center/100% 100%,
+                border-box url('../img/water.jpg');
+}
+
+td.boatstartvertical.hit {
+    background: url('../img/explosion.png') no-repeat center,
+                border-box url('../img/boatstartvertical.png') no-repeat center/100% 100%,
+                border-box url('../img/water.jpg');
+}
+
+td.boatendvertical.hit {
+    background: url('../img/explosion.png') no-repeat center,
+                border-box url('../img/boatendvertical.png') no-repeat center/100% 100%,
+                border-box url('../img/water.jpg');
+}
+
+td.missed::before {
+    content: '?';
+    color: black;
+    font-weight: bolder;
+    font-size: 50px;
+}
+
+td.hit {
+    pointer-events: none;
+    cursor: default;
+}
