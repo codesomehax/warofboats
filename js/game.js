@@ -63,6 +63,28 @@ class Game {
                 break;
         }
 
+        if (['shoot'].includes(type)) { // actions that can lead to the end of the game
+            // game is finished iff someone's boats are all destroyed
+            let finish = true;
+            for (let boat of this.players[1 - this.turn].boats) {
+                if (!boat.isDestroyed()) {
+                    finish = false;
+                    break;
+                }
+            }
+            
+            if (finish) {
+                for (let shootBoardField of document.querySelectorAll('.shootboard')) {
+                    shootBoardField.classList.add('inactive');
+                }
+
+                const fin = document.createElement('p');
+                fin.classList.add('finish');
+                fin.textContent = (this.turn) ? "You have lost!" : "Congratulations! You have won!";
+                document.querySelector('body').appendChild(fin);
+            }
+        }
+
         this.turn = 1 - this.turn;
 
         if (this.players[this.turn].type === 'CPU') this.action('shoot', getRandomInt(BOARD_SIZE), getRandomInt(BOARD_SIZE));

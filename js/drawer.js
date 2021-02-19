@@ -53,8 +53,6 @@ class Drawer {
         const boats = game.players[0].boats;
 
         for (let boat of boats) {
-
-            console.log(boat);
             
             for (let i in boat.fields) {
 
@@ -81,6 +79,10 @@ class Drawer {
     static delete() {
         const tablescontainer = document.querySelector('.tablescontainer');
         const boards = document.querySelectorAll('.tablescontainer table');
+        const finish = document.querySelector('.finish');
+        try {
+            finish.remove();
+        } catch(e) {}
 
         for (let board of boards) {
             tablescontainer.removeChild(board);

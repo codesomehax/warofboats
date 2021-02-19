@@ -45,6 +45,10 @@ td.boatendvertical.hit {
                 border-box url('../img/water.jpg');
 }
 
+td.missed:hover {
+    background: border-box url('../img/water.jpg');
+}
+
 td.missed::before {
     content: '?';
     color: black;
@@ -52,7 +56,7 @@ td.missed::before {
     font-size: 50px;
 }
 
-td.hit {
+td.hit, td.missed, .inactive {
     pointer-events: none;
     cursor: default;
 }
