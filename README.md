@@ -9,3 +9,5 @@ on również w całości na planszy. Trzeba jednak pamiętać, że na każdą z 
 strzela w kompletnie losowe miejsca, ale nie może strzelić dwa razy w to samo miejsce (to samo tyczy się gracza).
 
 Po ukończeniu gry pojawia się komunikat o wygranej bądź przegranej. Po tym nie można już strzelać, ale można rozpocząć nową grę.
+
+Plik *resources.txt* zawiera źródła pozyskanych grafik użytych do projektu.
